@@ -1,0 +1,27 @@
+Create email class
+    should contain int emailID, TimeStamp timestamp, String Emailaddress, String url
+    add setters and getter
+Create scrapeURL class
+    contains a String url, List<Email> emailList, List<String> urlList
+    has method called scrapeLinksAndEmails()
+      gets url using jsoup and adds all urls to urlList 
+      gets email using Jsoup and creates an Email object with the address, url, current time. adds it to the emailList
+    has getters for email and url list
+Create saveToDatabase class
+    has one method saveToDB()
+        takes a List<Email> and saves it to the database all in one shot
+
+Above are all the classes needed to actually scrape now will need to make the main webscrape application
+
+WebScraper (Main)
+  make a taskQueue that will be initilized with a scrapeURL class with Touro.edu
+  have a List<Email> allEmailList that will store emails
+  have it pull first task from queue and run the scrapeLinksAndEmails() and using getter take the emailList
+  and add it to the allEmailList 
+  Then using the getter for urlList make the urls attatched to a scrapeURL object and add all of them into the taskQueue
+  as future tasks so can be repeated
+  when allEmailList reaches a certain number (length) lets say 1,000 send the list to the database using
+  the saveToDataBase object and clear the list
+  repeat 10 times (10,000 emails scraped and sent to database)
+  make sure to have logging statments and a bunch of try catchs to avoid errors and enable debugiing 
+    
